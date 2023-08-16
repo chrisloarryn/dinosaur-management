@@ -10,5 +10,8 @@ import (
 func main() {
 	dinoAdapter := adapter.NewDinosaurAdapter(usecase.NewDinosaurUsecase(infrastructure.NewDinosaurRepository()))
 	server := api.NewServer(dinoAdapter)
-	server.Start(":8080")
+	err := server.Start(":8080")
+	if err != nil {
+		return
+	}
 }

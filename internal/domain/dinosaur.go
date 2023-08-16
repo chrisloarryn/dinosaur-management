@@ -2,9 +2,9 @@ package domain
 
 // Dinosaur represents a dinosaur entity.
 type Dinosaur struct {
-	ID          int
-	Name        string
-	Description string
+	ID          int    `json:"id"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
 	// Add more fields as needed
 }
 
@@ -30,6 +30,8 @@ func NewDinosaurService(repo DinosaurRepository) *DinosaurService {
 	return &DinosaurService{repo: repo}
 }
 
+// MARK: - ListDinosaurs
+
 // ListDinosaurs retrieves a list of all dinosaurs.
 func (s *DinosaurService) ListDinosaurs() ([]Dinosaur, error) {
 	dinosaurs, err := s.repo.ListDinosaurs()
@@ -38,6 +40,8 @@ func (s *DinosaurService) ListDinosaurs() ([]Dinosaur, error) {
 	}
 	return dinosaurs, nil
 }
+
+// MARK: - CreateDinosaur
 
 // CreateDinosaur creates a new dinosaur.
 func (s *DinosaurService) CreateDinosaur(dino Dinosaur) error {
